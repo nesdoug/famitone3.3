@@ -1,0 +1,5 @@
+text2vol, replaces text2data for famitone2
+doug fraker, 4-22-2019, unofficial update, nesdoug.com
+
+
+Put PAL support back in. Adds about 180 bytes of ROM space.
