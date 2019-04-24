@@ -627,6 +627,7 @@ update_sound:
 	clc
 	adc FT_CH1_NOTE_OFF
 	.ifdef FT_PITCH_FIX
+	clc
 	adc FT_PAL_ADJUST
 	.endif
 	tax
@@ -670,6 +671,7 @@ ch1cut:
 	clc
 	adc FT_CH2_NOTE_OFF
 	.ifdef FT_PITCH_FIX
+	clc
 	adc FT_PAL_ADJUST
 	.endif
 	tax
@@ -712,6 +714,7 @@ ch2cut:
 	clc
 	adc FT_CH3_NOTE_OFF
 	.ifdef FT_PITCH_FIX
+	clc
 	adc FT_PAL_ADJUST
 	.endif
 	tax
