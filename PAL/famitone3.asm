@@ -6,8 +6,7 @@
 ;Pal support REINSERTED 4-22-2019
 
 
-	.rsset $00fd
-FT_TEMP		.rs 3
+
 
 	.rsset $03f0
 volume_Sq1	.rs 1
@@ -23,8 +22,8 @@ multiple2	.rs 1
 ;settings, uncomment or put them into your main program; the latter makes possible updates easier
 
 FT_BASE_ADR		= $0300	;page in the RAM used for FT2 variables, should be $xx00
-
-FT_DPCM_OFF		= $f000	;$c000..$ffc0, 64-byte steps
+FT_TEMP			= $fd	;3 bytes in zeropage used by the library as a scratchpad
+FT_DPCM_OFF		= $fc00	;$c000..$ffc0, 64-byte steps
 FT_SFX_STREAMS	= 1		;number of sound effects played at once, 1..4
 
 FT_DPCM_ENABLE			;undefine to exclude all DMC code
@@ -400,8 +399,10 @@ FamiToneMusicPlay:
 	cpx #LOW(FT_CHANNELS)+FT_CHANNELS_ALL
 	bne .set_channels
 
+	.ifdef FT_PAL_SUPPORT
 	lda FT_PAL_ADJUST		;read tempo for PAL or NTSC
 	beq .pal
+	.endif
 	iny
 	iny
 .pal:

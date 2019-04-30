@@ -5,11 +5,7 @@
 ;added volume column and support for all NES notes
 ;Pal support REINSERTED 4-22-2019
 
-enum $00fd
 
-FT_TEMP		.db 0,0,0
-
-ende
 
 enum $03f0
 
@@ -28,8 +24,8 @@ ende
 ;settings, uncomment or put them into your main program; the latter makes possible updates easier
 
 FT_BASE_ADR		= $0300	;page in the RAM used for FT2 variables, should be $xx00
-
-FT_DPCM_OFF		= $f000	;$c000..$ffc0, 64-byte steps
+FT_TEMP			= $fd	;3 bytes in zeropage used by the library as a scratchpad
+FT_DPCM_OFF		= $fc00	;$c000..$ffc0, 64-byte steps
 FT_SFX_STREAMS	= 1		;number of sound effects played at once, 1..4
 
 FT_DPCM_ENABLE			;undefine to exclude all DMC code
@@ -405,9 +401,10 @@ FamiToneMusicPlay:
 	cpx #<(FT_CHANNELS)+FT_CHANNELS_ALL
 	bne @set_channels
 
-
+	.ifdef FT_PAL_SUPPORT
 	lda FT_PAL_ADJUST		;read tempo for PAL or NTSC
 	beq @pal
+	.endif
 	iny
 	iny
 @pal:
