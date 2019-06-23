@@ -1,7 +1,7 @@
-;FamiTone3.2 unofficial
+;FamiTone3.4 unofficial
 ;fork of Famitone2 v1.15 by Shiru 04'17
 ;for ca65
-;Revision 1-3-2017, Doug Fraker, to be used with text2vol
+;Revision 6-22-2019, Doug Fraker, to be used with text2vol
 ;added volume column and support for all NES notes
 ;Pal support REINSERTED 4-22-2019
 
