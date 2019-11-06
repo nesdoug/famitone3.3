@@ -613,9 +613,7 @@ FamiToneUpdate:
 	beq @ch1cut
 	clc
 	adc FT_CH1_NOTE_OFF
-		;.if(FT_PITCH_FIX) **
-		;ora FT_PAL_ADJUST
-		;.endif
+		;removed pal pitch fix **
 	tax
 	lda FT_CH1_PITCH_OFF
 	tay
@@ -655,9 +653,7 @@ FamiToneUpdate:
 	beq @ch2cut
 	clc
 	adc FT_CH2_NOTE_OFF
-		;.if(FT_PITCH_FIX)
-		;ora FT_PAL_ADJUST
-		;.endif
+		;removed pal pitch fix **
 	tax
 	lda FT_CH2_PITCH_OFF
 	tay
@@ -699,9 +695,7 @@ FamiToneUpdate:
 	beq @ch3cut
 	clc
 	adc FT_CH3_NOTE_OFF
-		;.if(FT_PITCH_FIX)
-		;ora FT_PAL_ADJUST
-		;.endif
+		;removed pal pitch fix **
 	tax
 	lda FT_CH3_PITCH_OFF
 	tay
@@ -1094,15 +1088,7 @@ FamiToneSfxInit:
 	
 	ldy #0
 	
-	.if(FT_PITCH_FIX)
-
-	lda FT_PAL_ADJUST		;add 2 to the sound list pointer for PAL
-	bne @ntsc
-	iny
-	iny
-@ntsc:
-
-	.endif
+;removed pal pitch fix **
 	
 	lda (FT_TEMP_PTR),y		;read and store pointer to the effects list
 	sta FT_SFX_ADR_L
