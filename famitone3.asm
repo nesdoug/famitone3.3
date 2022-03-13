@@ -1,20 +1,15 @@
-;FamiTone3.2021 unofficial
+;FamiTone3.2022.Mar.12
 ;fork of Famitone2 v1.15 by Shiru 04'17
-;for nesasm
+;for NESASM 3
 ;Revision 1-21-2021, Doug Fraker, to be used with text2vol
 ;added volume column and support for all NES notes
 ;Pal support fixed, volume table exact now
+;2022.Mar.12 moved variables to be contiguous
 
 
 
+; variables moved below
 
-	.rsset $03f0
-volume_Sq1	.rs 1
-volume_Sq2	.rs 1	
-volume_Nz	.rs 1
-vol_change	.rs 1	
-multiple1	.rs 1	
-;multiple2	.rs 1
 
 
 
@@ -173,6 +168,7 @@ FT_SFX_CH0			= FT_SFX_STRUCT_SIZE*0
 FT_SFX_CH1			= FT_SFX_STRUCT_SIZE*1
 FT_SFX_CH2			= FT_SFX_STRUCT_SIZE*2
 FT_SFX_CH3			= FT_SFX_STRUCT_SIZE*3
+SIZE_FT_SFX = FT_SFX_STRUCT_SIZE*FT_SFX_STREAMS
 
 
 ;aliases for the APU registers
@@ -226,6 +222,14 @@ FT_MR_NOISE_V		= FT_OUT_BUF+9
 FT_MR_NOISE_F		= FT_OUT_BUF+10
 	.endif
 
+FT_EXTRA = FT_SFX_BASE_ADR+SIZE_FT_SFX
+volume_Sq1 = FT_EXTRA
+volume_Sq2 = FT_EXTRA+1	
+volume_Nz = FT_EXTRA+2
+vol_change = FT_EXTRA+3	
+multiple1 = FT_EXTRA+4	
+
+;see VAR_CHART to find the next safe to use RAM address
 
 
 ;------------------------------------------------------------------------------
